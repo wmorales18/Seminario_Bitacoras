@@ -74,12 +74,41 @@
 
             <p:layout fullPage="true">
 
+<<<<<<< HEAD
                 <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
                     Header
                 </p:layoutUnit>
 
                 <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
                     Footer
+=======
+                    <p:layoutUnit position="north" closable="true" collapsible="true" style="background-color: brown;">
+             
+                    </p:layoutUnit>
+             
+       
+                <p:layoutUnit position="south" size="100" closable="true" collapsible="true" style="background-color: brown;">
+                    SISTEMA DE BITACORAS    V 1.0
+                </p:layoutUnit>
+
+             
+           
+                 
+                   <p:layoutUnit position="center">
+             
+                       <h:form class="table">
+                        <p:panelGrid columns="2" style="position: absolute; top: 250px; left: 500px;">
+                            <f:facet name="header" >Login</f:facet>
+                            <h:outputText value="Usuario" > Usuarios</h:outputText>
+                            <p:inputText value="Usuario"></p:inputText>
+                            <h:outputText value="Contraseña"> </h:outputText>
+                            <p:password value="Password"></p:password>
+                            <center>
+                                 <h:commandButton action="Crud.xhtml" value="Login"/>
+                            </center>
+                        </p:panelGrid>
+                    </h:form>
+>>>>>>> parent of 722d5bc... V 1.0.0
                 </p:layoutUnit>
 
                 <p:layoutUnit position="west" size="175" header="Left" collapsible="true">
