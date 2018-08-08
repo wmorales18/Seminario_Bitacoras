@@ -28,16 +28,20 @@
                  
                    <p:layoutUnit position="center" style="background-color: brown;">
                     <h:form class="table">
+                        
                         <p:panelGrid columns="2" style="position: absolute; top: 200px; left: 700px;">
-                            <f:facet name="header" >Login</f:facet>
-                            <h:outputText value="Usuario:" ></h:outputText>
-                            <p:inputText value=" "></p:inputText>
-                            <h:outputText value="Contraseña:"> </h:outputText>
-                            <p:password value=" "></p:password>
-                            <center>
-                                 
-                                 <h:commandButton action="Home_proyectos.xhtml" value="Ingresar"/>
-                            </center>
+                        
+                            <f:facet name="header" >Login</f:facet> 
+                             <p:outputLabel for="txtUsuario" value="Usuario" />
+                             <p:inputText id="txtUsuario"  required="true"/>
+            
+                             <p:outputLabel for="txtClave" value="Clave" />
+                             <p:inputText id="txtClave"  required="true" />
+                
+                             <h:column />
+                             <p:commandButton action="Home_proyectos.xhtml" icon="ui-icon-key" value="Iniciar Sesion"/>
+                         
+                            
                         </p:panelGrid>
                     </h:form>
                 </p:layoutUnit>
