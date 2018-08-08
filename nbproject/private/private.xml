@@ -2,8 +2,13 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/wmorales/Documents/NetBeansProjects/Seminario_Bitacoras/web/Crud_usuario.xhtml</file>
             <file>file:/C:/Users/wmorales/Documents/NetBeansProjects/Seminario_Bitacoras/web/Home_proyectos.xhtml</file>
+=======
+            <file>file:/C:/Users/wmorales/Documents/NetBeansProjects/Seminario_Bitacoras/web/Crud.xhtml</file>
+            <file>file:/C:/Users/wmorales/Documents/NetBeansProjects/Seminario_Bitacoras/web/index.xhtml</file>
+>>>>>>> parent of 9ca7bfb... v 1.0.1
             <file>file:/C:/Users/wmorales/Documents/NetBeansProjects/Seminario_Bitacoras/web/welcomePrimefaces.xhtml</file>
         </group>
     </open-files>
