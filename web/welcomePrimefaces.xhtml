@@ -35,9 +35,11 @@
                             <p:outputLabel for="txtUsuario" value="Usuario"></p:outputLabel>
                             <p:inputText id="txtUsuario"  required="true"></p:inputText>
                             <p:outputLabel for="txtClave" value="Clave"></p:outputLabel>
-                            <p:inputText id="txtClave"  required="true"></p:inputText>
-                             <h:column />
-                               <p:commandButton action="Home_proyectos.xhtml" icon="ui-icon-key" value="Iniciar Sesion" />
+                            <p:password id="txtClave"  required="true"></p:password>
+                            <p:column> </p:column>
+                            <p:column> 
+                                <h:commandButton action="Home_proyectos.xhtml" value="Iniciar Sesion" />
+                               </p:column>
                         </p:panelGrid>
                     </h:form>
                 </p:layoutUnit>
