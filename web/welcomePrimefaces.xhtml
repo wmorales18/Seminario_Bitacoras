@@ -14,39 +14,27 @@
         </h:head>
 
         <h:body>
-
+            <p:growl id="growl"  sticky="true" showDetail="true"></p:growl>
             <p:layout fullPage="true">
-
-                 
-             
-       
                 <p:layoutUnit position="south" size="100" closable="true" collapsible="true" style="background-color: brown;">
                     SISTEMA DE BITACORAS    V 1.0
                 </p:layoutUnit>
-
-                    
-                 
-                   <p:layoutUnit position="center" style="background-color: brown;">
+          <p:layoutUnit position="center" style="background-color: brown;">
                     <h:form class="table">
-                        <p:messages autoUpdate="true"  showDetail="true"/>
-
-                        <p:panelGrid columns="2" style="position: absolute; top: 200px; left: 500px;">
-                            <f:facet name="header" >Login</f:facet>
-                            <p:outputLabel for="txtUsuario" value="Usuario"></p:outputLabel>
-                            <p:inputText id="txtUsuario"  required="true"></p:inputText>
-                            <p:outputLabel for="txtClave" value="Clave"></p:outputLabel>
-                            <p:password id="txtClave"  required="true"></p:password>
-                            <p:column> </p:column>
-                            <p:column> 
-                                <h:commandButton action="Home_proyectos.xhtml" value="Iniciar Sesion" />
-                               </p:column>
-                        </p:panelGrid>
+                        <p:panelGrid columns="2" style="position: absolute; top: 250px; left: 500px;">
+                            <f:facet name="header">Login</f:facet>
+                            <h:outputText value=""></h:outputText>
+                            <p:inputText value="#{Usuario.usuario}"></p:inputText>
+                            <h:outputText value=""></h:outputText>
+                            <p:password value="#{Usuario.password}"></p:password>
+                            <f:facet name="footer">
+                                <p:commandButton value="Login" action="#{Usuario.loginControl()}"></p:commandButton>
+                            </f:facet>
+                            </p:panelGrid>
                     </h:form>
                 </p:layoutUnit>
-                
             </p:layout>
-
-        </h:body>
+     </h:body>
 
     </f:view>
 </html>
