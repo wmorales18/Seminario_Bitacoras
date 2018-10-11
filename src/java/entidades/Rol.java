@@ -18,6 +18,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -26,13 +28,13 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author internet
  */
 @Entity
-@Table(name = "rol")
+@Table(name = "rol", catalog = "seminario1", schema = "")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Rol.findAll", query = "SELECT r FROM Rol r")
     , @NamedQuery(name = "Rol.findByIdRol", query = "SELECT r FROM Rol r WHERE r.idRol = :idRol")
-    , @NamedQuery(name = "Rol.findByNombreRol", query = "SELECT r FROM Rol r WHERE r.nombreRol = :nombreRol")
-    , @NamedQuery(name = "Rol.findByDescripcionRol", query = "SELECT r FROM Rol r WHERE r.descripcionRol = :descripcionRol")})
+    , @NamedQuery(name = "Rol.findByNombrerol", query = "SELECT r FROM Rol r WHERE r.nombrerol = :nombrerol")
+    , @NamedQuery(name = "Rol.findByDescrol", query = "SELECT r FROM Rol r WHERE r.descrol = :descrol")})
 public class Rol implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -42,12 +44,16 @@ public class Rol implements Serializable {
     @Column(name = "idRol")
     private Integer idRol;
     @Basic(optional = false)
-    @Column(name = "nombre_rol")
-    private String nombreRol;
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "nombrerol")
+    private String nombrerol;
     @Basic(optional = false)
-    @Column(name = "descripcion_rol")
-    private String descripcionRol;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "rol")
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "descrol")
+    private String descrol;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "rolidRol")
     private Collection<Usuario> usuarioCollection;
 
     public Rol() {
@@ -57,10 +63,10 @@ public class Rol implements Serializable {
         this.idRol = idRol;
     }
 
-    public Rol(Integer idRol, String nombreRol, String descripcionRol) {
+    public Rol(Integer idRol, String nombrerol, String descrol) {
         this.idRol = idRol;
-        this.nombreRol = nombreRol;
-        this.descripcionRol = descripcionRol;
+        this.nombrerol = nombrerol;
+        this.descrol = descrol;
     }
 
     public Integer getIdRol() {
@@ -71,20 +77,20 @@ public class Rol implements Serializable {
         this.idRol = idRol;
     }
 
-    public String getNombreRol() {
-        return nombreRol;
+    public String getNombrerol() {
+        return nombrerol;
     }
 
-    public void setNombreRol(String nombreRol) {
-        this.nombreRol = nombreRol;
+    public void setNombrerol(String nombrerol) {
+        this.nombrerol = nombrerol;
     }
 
-    public String getDescripcionRol() {
-        return descripcionRol;
+    public String getDescrol() {
+        return descrol;
     }
 
-    public void setDescripcionRol(String descripcionRol) {
-        this.descripcionRol = descripcionRol;
+    public void setDescrol(String descrol) {
+        this.descrol = descrol;
     }
 
     @XmlTransient
@@ -110,10 +116,7 @@ public class Rol implements Serializable {
             return false;
         }
         Rol other = (Rol) object;
-        if ((this.idRol == null && other.idRol != null) || (this.idRol != null && !this.idRol.equals(other.idRol))) {
-            return false;
-        }
-        return true;
+        return !((this.idRol == null && other.idRol != null) || (this.idRol != null && !this.idRol.equals(other.idRol)));
     }
 
     @Override

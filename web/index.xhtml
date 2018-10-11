@@ -1,14 +1,64 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
-    <h:head>
-        <title>Facelet Title</title>
-    </h:head>
-    <h:body>
-        Hello from Facelets
-        <br />
-        <h:link outcome="welcomePrimefaces" value="Primefaces welcome page" />
-    </h:body>
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    
+    
+    <f:view contentType="text/html">
+        <h:head>
+             <h:outputStylesheet library="css" name="jsfcrud.css"> </h:outputStylesheet>
+              
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>PrimeFaces</title>
+            </f:facet>
+        </h:head>
+
+        <h:body>
+
+          
+            <p:layout fullPage="true">
+
+               <p:layoutUnit position="north" closable="true" collapsible="true" style="background-color: brown;">
+                   
+          
+  
+                       
+         </p:layoutUnit>
+
+                <p:layoutUnit position="south" size="100" closable="true" collapsible="true" style="background-color: brown;">
+                    SISTEMA DE BITACORAS    V 1.0
+                </p:layoutUnit>
+
+                <p:layoutUnit position="west" size="175"  collapsible="true" style="background-color: brown;">
+                    
+           
+                    <p:menubar autoDisplay="true" style="background-color: brown" >
+                        <p:submenu label="Menu">
+
+                            <p:menuitem value="Usuario" outcome="/usuario/List" />
+                            <p:menuitem value="Bitacora" outcome="/bitacora/List" />
+                            <p:menuitem value="Estado" outcome="/estado/List" />
+                            <p:menuitem value="Proyecto" outcome="/proyecto/List" />
+                            <p:menuitem value="Rol" outcome="/rol/List" />
+
+                        </p:submenu>
+                       </p:menubar>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="center">
+                    
+                    SISTEMA DE BITACORA
+                </p:layoutUnit>
+
+            </p:layout>
+
+        </h:body>
+
+    </f:view>
+    
+    
+
 </html>
 

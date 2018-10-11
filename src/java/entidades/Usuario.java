@@ -10,14 +10,16 @@ import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -26,56 +28,76 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author internet
  */
 @Entity
-@Table(name = "usuario")
+@Table(name = "usuario", catalog = "seminario1", schema = "")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u")
-    , @NamedQuery(name = "Usuario.findByIdUSUARIO", query = "SELECT u FROM Usuario u WHERE u.usuarioPK.idUSUARIO = :idUSUARIO")
+    , @NamedQuery(name = "Usuario.findByIdUsuario", query = "SELECT u FROM Usuario u WHERE u.idUsuario = :idUsuario")
     , @NamedQuery(name = "Usuario.findByNombre", query = "SELECT u FROM Usuario u WHERE u.nombre = :nombre")
     , @NamedQuery(name = "Usuario.findByApellido", query = "SELECT u FROM Usuario u WHERE u.apellido = :apellido")
-    , @NamedQuery(name = "Usuario.findByRolidRol", query = "SELECT u FROM Usuario u WHERE u.usuarioPK.rolidRol = :rolidRol")})
+    , @NamedQuery(name = "Usuario.findByUsuario", query = "SELECT u FROM Usuario u WHERE u.usuario = :usuario")
+    , @NamedQuery(name = "Usuario.findByPassword", query = "SELECT u FROM Usuario u WHERE u.password = :password")
+    , @NamedQuery(name = "Usuario.findByEstado", query = "SELECT u FROM Usuario u WHERE u.estado = :estado")})
 public class Usuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @EmbeddedId
-    protected UsuarioPK usuarioPK;
+    @Id
     @Basic(optional = false)
-    @Column(name = "Nombre")
+    @NotNull
+    @Column(name = "idUsuario")
+    private Integer idUsuario;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "nombre")
     private String nombre;
     @Basic(optional = false)
-    @Column(name = "Apellido")
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "apellido")
     private String apellido;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "uSUARIOidUSUARIO")
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "usuario")
+    private String usuario;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "password")
+    private String password;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "estado")
+    private int estado;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarioidUsuario")
     private Collection<Bitacora> bitacoraCollection;
-    @JoinColumn(name = "Rol_idRol", referencedColumnName = "idRol", insertable = false, updatable = false)
+    @JoinColumn(name = "Rol_idRol", referencedColumnName = "idRol")
     @ManyToOne(optional = false)
-    private Rol rol;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "uSUARIOidUSUARIO")
-    private Collection<Login> loginCollection;
+    private Rol rolidRol;
 
     public Usuario() {
     }
 
-    public Usuario(UsuarioPK usuarioPK) {
-        this.usuarioPK = usuarioPK;
+    public Usuario(Integer idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
-    public Usuario(UsuarioPK usuarioPK, String nombre, String apellido) {
-        this.usuarioPK = usuarioPK;
+    public Usuario(Integer idUsuario, String nombre, String apellido, String usuario, String password, int estado) {
+        this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.apellido = apellido;
+        this.usuario = usuario;
+        this.password = password;
+        this.estado = estado;
     }
 
-    public Usuario(int idUSUARIO, int rolidRol) {
-        this.usuarioPK = new UsuarioPK(idUSUARIO, rolidRol);
+    public Integer getIdUsuario() {
+        return idUsuario;
     }
 
-    public UsuarioPK getUsuarioPK() {
-        return usuarioPK;
-    }
-
-    public void setUsuarioPK(UsuarioPK usuarioPK) {
-        this.usuarioPK = usuarioPK;
+    public void setIdUsuario(Integer idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public String getNombre() {
@@ -94,6 +116,30 @@ public class Usuario implements Serializable {
         this.apellido = apellido;
     }
 
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public int getEstado() {
+        return estado;
+    }
+
+    public void setEstado(int estado) {
+        this.estado = estado;
+    }
+
     @XmlTransient
     public Collection<Bitacora> getBitacoraCollection() {
         return bitacoraCollection;
@@ -103,27 +149,18 @@ public class Usuario implements Serializable {
         this.bitacoraCollection = bitacoraCollection;
     }
 
-    public Rol getRol() {
-        return rol;
+    public Rol getRolidRol() {
+        return rolidRol;
     }
 
-    public void setRol(Rol rol) {
-        this.rol = rol;
-    }
-
-    @XmlTransient
-    public Collection<Login> getLoginCollection() {
-        return loginCollection;
-    }
-
-    public void setLoginCollection(Collection<Login> loginCollection) {
-        this.loginCollection = loginCollection;
+    public void setRolidRol(Rol rolidRol) {
+        this.rolidRol = rolidRol;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (usuarioPK != null ? usuarioPK.hashCode() : 0);
+        hash += (idUsuario != null ? idUsuario.hashCode() : 0);
         return hash;
     }
 
@@ -134,15 +171,12 @@ public class Usuario implements Serializable {
             return false;
         }
         Usuario other = (Usuario) object;
-        if ((this.usuarioPK == null && other.usuarioPK != null) || (this.usuarioPK != null && !this.usuarioPK.equals(other.usuarioPK))) {
-            return false;
-        }
-        return true;
+        return !((this.idUsuario == null && other.idUsuario != null) || (this.idUsuario != null && !this.idUsuario.equals(other.idUsuario)));
     }
 
     @Override
     public String toString() {
-        return "entidades.Usuario[ usuarioPK=" + usuarioPK + " ]";
+        return "entidades.Usuario[ idUsuario=" + idUsuario + " ]";
     }
     
 }

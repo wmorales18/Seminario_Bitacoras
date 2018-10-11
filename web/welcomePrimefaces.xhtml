@@ -9,7 +9,7 @@
         <h:head>
             <f:facet name="first">
                 <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
-                <title>SEMINARIO</title>
+                <title>PrimeFaces</title>
             </f:facet>
         </h:head>
 
@@ -17,33 +17,31 @@
 
             <p:layout fullPage="true">
 
-                 
-             
-       
-                <p:layoutUnit position="south" size="100" closable="true" collapsible="true" style="background-color: brown;">
-                    SISTEMA DE BITACORAS    V 1.0
+                <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
+                    Header
                 </p:layoutUnit>
 
-                    
-                 
-                   <p:layoutUnit position="center" style="background-color: brown;">
-                    <h:form class="table">
-                        <p:messages autoUpdate="true"  showDetail="true"/>
-
-                        <p:panelGrid columns="2" style="position: absolute; top: 200px; left: 500px;">
-                            <f:facet name="header" >Login</f:facet>
-                            <p:outputLabel for="txtUsuario" value="Usuario"></p:outputLabel>
-                            <p:inputText id="txtUsuario"  required="true"></p:inputText>
-                            <p:outputLabel for="txtClave" value="Clave"></p:outputLabel>
-                            <p:password id="txtClave"  required="true"></p:password>
-                            <p:column> </p:column>
-                            <p:column> 
-                                <h:commandButton action="Home_proyectos.xhtml" value="Iniciar Sesion" />
-                               </p:column>
-                        </p:panelGrid>
-                    </h:form>
+                <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
+                    Footer
                 </p:layoutUnit>
-                
+
+                <p:layoutUnit position="west" size="175" header="Left" collapsible="true">
+                    <p:menu>
+                        <p:submenu label="Resources">
+                            <p:menuitem value="Demo" url="http://www.primefaces.org/showcase-labs/ui/home.jsf" />
+                            <p:menuitem value="Documentation" url="http://www.primefaces.org/documentation.html" />
+                            <p:menuitem value="Forum" url="http://forum.primefaces.org/" />
+                            <p:menuitem value="Themes" url="http://www.primefaces.org/themes.html" />
+
+                        </p:submenu>
+
+                    </p:menu>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="center">
+                    Welcome to PrimeFaces
+                </p:layoutUnit>
+
             </p:layout>
 
         </h:body>

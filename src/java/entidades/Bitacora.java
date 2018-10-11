@@ -20,6 +20,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -27,78 +29,93 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author internet
  */
 @Entity
-@Table(name = "bitacora")
+@Table(name = "bitacora", catalog = "seminario1", schema = "")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Bitacora.findAll", query = "SELECT b FROM Bitacora b")
-    , @NamedQuery(name = "Bitacora.findByIdBITACORA", query = "SELECT b FROM Bitacora b WHERE b.idBITACORA = :idBITACORA")
-    , @NamedQuery(name = "Bitacora.findByTitulo", query = "SELECT b FROM Bitacora b WHERE b.titulo = :titulo")
+    , @NamedQuery(name = "Bitacora.findByIdBitacora", query = "SELECT b FROM Bitacora b WHERE b.idBitacora = :idBitacora")
+    , @NamedQuery(name = "Bitacora.findByNombrebi", query = "SELECT b FROM Bitacora b WHERE b.nombrebi = :nombrebi")
     , @NamedQuery(name = "Bitacora.findByActividad", query = "SELECT b FROM Bitacora b WHERE b.actividad = :actividad")
     , @NamedQuery(name = "Bitacora.findByFechaInicio", query = "SELECT b FROM Bitacora b WHERE b.fechaInicio = :fechaInicio")
     , @NamedQuery(name = "Bitacora.findByFechaFinal", query = "SELECT b FROM Bitacora b WHERE b.fechaFinal = :fechaFinal")
-    , @NamedQuery(name = "Bitacora.findByUbicacion", query = "SELECT b FROM Bitacora b WHERE b.ubicacion = :ubicacion")})
+    , @NamedQuery(name = "Bitacora.findByUbicacion", query = "SELECT b FROM Bitacora b WHERE b.ubicacion = :ubicacion")
+    , @NamedQuery(name = "Bitacora.findByObjetivo", query = "SELECT b FROM Bitacora b WHERE b.objetivo = :objetivo")})
 public class Bitacora implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "idBITACORA")
-    private Integer idBITACORA;
+    @Column(name = "idBitacora")
+    private Integer idBitacora;
     @Basic(optional = false)
-    @Column(name = "titulo")
-    private String titulo;
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "nombrebi")
+    private String nombrebi;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
     @Column(name = "actividad")
     private String actividad;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "fecha_inicio")
     @Temporal(TemporalType.DATE)
     private Date fechaInicio;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "fecha_final")
     @Temporal(TemporalType.DATE)
     private Date fechaFinal;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
     @Column(name = "ubicacion")
     private String ubicacion;
-    @JoinColumn(name = "PROYECTO_idPROYECTO", referencedColumnName = "idPROYECTO")
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "objetivo")
+    private String objetivo;
+    @JoinColumn(name = "Usuario_idUsuario", referencedColumnName = "idUsuario")
     @ManyToOne(optional = false)
-    private Proyecto pROYECTOidPROYECTO;
-    @JoinColumn(name = "USUARIO_idUSUARIO", referencedColumnName = "idUSUARIO")
+    private Usuario usuarioidUsuario;
+    @JoinColumn(name = "proyecto_idproyecto", referencedColumnName = "idproyecto")
     @ManyToOne(optional = false)
-    private Usuario uSUARIOidUSUARIO;
+    private Proyecto proyectoIdproyecto;
 
     public Bitacora() {
     }
 
-    public Bitacora(Integer idBITACORA) {
-        this.idBITACORA = idBITACORA;
+    public Bitacora(Integer idBitacora) {
+        this.idBitacora = idBitacora;
     }
 
-    public Bitacora(Integer idBITACORA, String titulo, String actividad, Date fechaInicio, Date fechaFinal, String ubicacion) {
-        this.idBITACORA = idBITACORA;
-        this.titulo = titulo;
+    public Bitacora(Integer idBitacora, String nombrebi, String actividad, Date fechaInicio, Date fechaFinal, String ubicacion, String objetivo) {
+        this.idBitacora = idBitacora;
+        this.nombrebi = nombrebi;
         this.actividad = actividad;
         this.fechaInicio = fechaInicio;
         this.fechaFinal = fechaFinal;
         this.ubicacion = ubicacion;
+        this.objetivo = objetivo;
     }
 
-    public Integer getIdBITACORA() {
-        return idBITACORA;
+    public Integer getIdBitacora() {
+        return idBitacora;
     }
 
-    public void setIdBITACORA(Integer idBITACORA) {
-        this.idBITACORA = idBITACORA;
+    public void setIdBitacora(Integer idBitacora) {
+        this.idBitacora = idBitacora;
     }
 
-    public String getTitulo() {
-        return titulo;
+    public String getNombrebi() {
+        return nombrebi;
     }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
+    public void setNombrebi(String nombrebi) {
+        this.nombrebi = nombrebi;
     }
 
     public String getActividad() {
@@ -133,26 +150,34 @@ public class Bitacora implements Serializable {
         this.ubicacion = ubicacion;
     }
 
-    public Proyecto getPROYECTOidPROYECTO() {
-        return pROYECTOidPROYECTO;
+    public String getObjetivo() {
+        return objetivo;
     }
 
-    public void setPROYECTOidPROYECTO(Proyecto pROYECTOidPROYECTO) {
-        this.pROYECTOidPROYECTO = pROYECTOidPROYECTO;
+    public void setObjetivo(String objetivo) {
+        this.objetivo = objetivo;
     }
 
-    public Usuario getUSUARIOidUSUARIO() {
-        return uSUARIOidUSUARIO;
+    public Usuario getUsuarioidUsuario() {
+        return usuarioidUsuario;
     }
 
-    public void setUSUARIOidUSUARIO(Usuario uSUARIOidUSUARIO) {
-        this.uSUARIOidUSUARIO = uSUARIOidUSUARIO;
+    public void setUsuarioidUsuario(Usuario usuarioidUsuario) {
+        this.usuarioidUsuario = usuarioidUsuario;
+    }
+
+    public Proyecto getProyectoIdproyecto() {
+        return proyectoIdproyecto;
+    }
+
+    public void setProyectoIdproyecto(Proyecto proyectoIdproyecto) {
+        this.proyectoIdproyecto = proyectoIdproyecto;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idBITACORA != null ? idBITACORA.hashCode() : 0);
+        hash += (idBitacora != null ? idBitacora.hashCode() : 0);
         return hash;
     }
 
@@ -163,15 +188,12 @@ public class Bitacora implements Serializable {
             return false;
         }
         Bitacora other = (Bitacora) object;
-        if ((this.idBITACORA == null && other.idBITACORA != null) || (this.idBITACORA != null && !this.idBITACORA.equals(other.idBITACORA))) {
-            return false;
-        }
-        return true;
+        return !((this.idBitacora == null && other.idBitacora != null) || (this.idBitacora != null && !this.idBitacora.equals(other.idBitacora)));
     }
 
     @Override
     public String toString() {
-        return "entidades.Bitacora[ idBITACORA=" + idBITACORA + " ]";
+        return "entidades.Bitacora[ idBitacora=" + idBitacora + " ]";
     }
     
 }

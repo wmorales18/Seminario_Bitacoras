@@ -12,6 +12,8 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -21,6 +23,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -29,95 +33,102 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author internet
  */
 @Entity
-@Table(name = "proyecto")
+@Table(name = "proyecto", catalog = "seminario1", schema = "")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Proyecto.findAll", query = "SELECT p FROM Proyecto p")
-    , @NamedQuery(name = "Proyecto.findByIdPROYECTO", query = "SELECT p FROM Proyecto p WHERE p.idPROYECTO = :idPROYECTO")
-    , @NamedQuery(name = "Proyecto.findByNombreProyecto", query = "SELECT p FROM Proyecto p WHERE p.nombreProyecto = :nombreProyecto")
-    , @NamedQuery(name = "Proyecto.findByDescripcionProyecto", query = "SELECT p FROM Proyecto p WHERE p.descripcionProyecto = :descripcionProyecto")
-    , @NamedQuery(name = "Proyecto.findByFechaInicioProyecto", query = "SELECT p FROM Proyecto p WHERE p.fechaInicioProyecto = :fechaInicioProyecto")
-    , @NamedQuery(name = "Proyecto.findByFechaFinalProyecto", query = "SELECT p FROM Proyecto p WHERE p.fechaFinalProyecto = :fechaFinalProyecto")})
+    , @NamedQuery(name = "Proyecto.findByIdproyecto", query = "SELECT p FROM Proyecto p WHERE p.idproyecto = :idproyecto")
+    , @NamedQuery(name = "Proyecto.findByNombrepro", query = "SELECT p FROM Proyecto p WHERE p.nombrepro = :nombrepro")
+    , @NamedQuery(name = "Proyecto.findByDescpro", query = "SELECT p FROM Proyecto p WHERE p.descpro = :descpro")
+    , @NamedQuery(name = "Proyecto.findByFechaIniPro", query = "SELECT p FROM Proyecto p WHERE p.fechaIniPro = :fechaIniPro")
+    , @NamedQuery(name = "Proyecto.findByFechaFinalPro", query = "SELECT p FROM Proyecto p WHERE p.fechaFinalPro = :fechaFinalPro")})
 public class Proyecto implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "idPROYECTO")
-    private Integer idPROYECTO;
+    @Column(name = "idproyecto")
+    private Integer idproyecto;
     @Basic(optional = false)
-    @Column(name = "nombre_proyecto")
-    private String nombreProyecto;
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "nombrepro")
+    private String nombrepro;
     @Basic(optional = false)
-    @Column(name = "descripcion_proyecto")
-    private String descripcionProyecto;
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "descpro")
+    private String descpro;
     @Basic(optional = false)
-    @Column(name = "fecha_inicio_proyecto")
+    @NotNull
+    @Column(name = "fecha_ini_pro")
     @Temporal(TemporalType.DATE)
-    private Date fechaInicioProyecto;
+    private Date fechaIniPro;
     @Basic(optional = false)
-    @Column(name = "fecha_final_proyecto")
+    @NotNull
+    @Column(name = "fecha_final_pro")
     @Temporal(TemporalType.DATE)
-    private Date fechaFinalProyecto;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pROYECTOidPROYECTO")
+    private Date fechaFinalPro;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "proyectoIdproyecto")
     private Collection<Bitacora> bitacoraCollection;
-    @JoinColumn(name = "ESTADO_idESTADO", referencedColumnName = "idESTADO")
+    @JoinColumn(name = "Estado_idEstado", referencedColumnName = "idEstado")
     @ManyToOne(optional = false)
-    private Estado eSTADOidESTADO;
+    private Estado estadoidEstado;
 
     public Proyecto() {
     }
 
-    public Proyecto(Integer idPROYECTO) {
-        this.idPROYECTO = idPROYECTO;
+    public Proyecto(Integer idproyecto) {
+        this.idproyecto = idproyecto;
     }
 
-    public Proyecto(Integer idPROYECTO, String nombreProyecto, String descripcionProyecto, Date fechaInicioProyecto, Date fechaFinalProyecto) {
-        this.idPROYECTO = idPROYECTO;
-        this.nombreProyecto = nombreProyecto;
-        this.descripcionProyecto = descripcionProyecto;
-        this.fechaInicioProyecto = fechaInicioProyecto;
-        this.fechaFinalProyecto = fechaFinalProyecto;
+    public Proyecto(Integer idproyecto, String nombrepro, String descpro, Date fechaIniPro, Date fechaFinalPro) {
+        this.idproyecto = idproyecto;
+        this.nombrepro = nombrepro;
+        this.descpro = descpro;
+        this.fechaIniPro = fechaIniPro;
+        this.fechaFinalPro = fechaFinalPro;
     }
 
-    public Integer getIdPROYECTO() {
-        return idPROYECTO;
+    public Integer getIdproyecto() {
+        return idproyecto;
     }
 
-    public void setIdPROYECTO(Integer idPROYECTO) {
-        this.idPROYECTO = idPROYECTO;
+    public void setIdproyecto(Integer idproyecto) {
+        this.idproyecto = idproyecto;
     }
 
-    public String getNombreProyecto() {
-        return nombreProyecto;
+    public String getNombrepro() {
+        return nombrepro;
     }
 
-    public void setNombreProyecto(String nombreProyecto) {
-        this.nombreProyecto = nombreProyecto;
+    public void setNombrepro(String nombrepro) {
+        this.nombrepro = nombrepro;
     }
 
-    public String getDescripcionProyecto() {
-        return descripcionProyecto;
+    public String getDescpro() {
+        return descpro;
     }
 
-    public void setDescripcionProyecto(String descripcionProyecto) {
-        this.descripcionProyecto = descripcionProyecto;
+    public void setDescpro(String descpro) {
+        this.descpro = descpro;
     }
 
-    public Date getFechaInicioProyecto() {
-        return fechaInicioProyecto;
+    public Date getFechaIniPro() {
+        return fechaIniPro;
     }
 
-    public void setFechaInicioProyecto(Date fechaInicioProyecto) {
-        this.fechaInicioProyecto = fechaInicioProyecto;
+    public void setFechaIniPro(Date fechaIniPro) {
+        this.fechaIniPro = fechaIniPro;
     }
 
-    public Date getFechaFinalProyecto() {
-        return fechaFinalProyecto;
+    public Date getFechaFinalPro() {
+        return fechaFinalPro;
     }
 
-    public void setFechaFinalProyecto(Date fechaFinalProyecto) {
-        this.fechaFinalProyecto = fechaFinalProyecto;
+    public void setFechaFinalPro(Date fechaFinalPro) {
+        this.fechaFinalPro = fechaFinalPro;
     }
 
     @XmlTransient
@@ -129,18 +140,18 @@ public class Proyecto implements Serializable {
         this.bitacoraCollection = bitacoraCollection;
     }
 
-    public Estado getESTADOidESTADO() {
-        return eSTADOidESTADO;
+    public Estado getEstadoidEstado() {
+        return estadoidEstado;
     }
 
-    public void setESTADOidESTADO(Estado eSTADOidESTADO) {
-        this.eSTADOidESTADO = eSTADOidESTADO;
+    public void setEstadoidEstado(Estado estadoidEstado) {
+        this.estadoidEstado = estadoidEstado;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idPROYECTO != null ? idPROYECTO.hashCode() : 0);
+        hash += (idproyecto != null ? idproyecto.hashCode() : 0);
         return hash;
     }
 
@@ -151,15 +162,12 @@ public class Proyecto implements Serializable {
             return false;
         }
         Proyecto other = (Proyecto) object;
-        if ((this.idPROYECTO == null && other.idPROYECTO != null) || (this.idPROYECTO != null && !this.idPROYECTO.equals(other.idPROYECTO))) {
-            return false;
-        }
-        return true;
+        return !((this.idproyecto == null && other.idproyecto != null) || (this.idproyecto != null && !this.idproyecto.equals(other.idproyecto)));
     }
 
     @Override
     public String toString() {
-        return "entidades.Proyecto[ idPROYECTO=" + idPROYECTO + " ]";
+        return "entidades.Proyecto[ idproyecto=" + idproyecto + " ]";
     }
     
 }

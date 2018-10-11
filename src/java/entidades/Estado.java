@@ -18,6 +18,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -26,65 +28,69 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author internet
  */
 @Entity
-@Table(name = "estado")
+@Table(name = "estado", catalog = "seminario1", schema = "")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Estado.findAll", query = "SELECT e FROM Estado e")
-    , @NamedQuery(name = "Estado.findByIdESTADO", query = "SELECT e FROM Estado e WHERE e.idESTADO = :idESTADO")
-    , @NamedQuery(name = "Estado.findByNombreEstado", query = "SELECT e FROM Estado e WHERE e.nombreEstado = :nombreEstado")
-    , @NamedQuery(name = "Estado.findByDescripcionEstado", query = "SELECT e FROM Estado e WHERE e.descripcionEstado = :descripcionEstado")})
+    , @NamedQuery(name = "Estado.findByIdEstado", query = "SELECT e FROM Estado e WHERE e.idEstado = :idEstado")
+    , @NamedQuery(name = "Estado.findByNombreest", query = "SELECT e FROM Estado e WHERE e.nombreest = :nombreest")
+    , @NamedQuery(name = "Estado.findByDescest", query = "SELECT e FROM Estado e WHERE e.descest = :descest")})
 public class Estado implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "idESTADO")
-    private Integer idESTADO;
+    @Column(name = "idEstado")
+    private Integer idEstado;
     @Basic(optional = false)
-    @Column(name = "nombre_estado")
-    private String nombreEstado;
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "nombreest")
+    private String nombreest;
     @Basic(optional = false)
-    @Column(name = "descripcion_estado")
-    private String descripcionEstado;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "eSTADOidESTADO")
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "descest")
+    private String descest;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "estadoidEstado")
     private Collection<Proyecto> proyectoCollection;
 
     public Estado() {
     }
 
-    public Estado(Integer idESTADO) {
-        this.idESTADO = idESTADO;
+    public Estado(Integer idEstado) {
+        this.idEstado = idEstado;
     }
 
-    public Estado(Integer idESTADO, String nombreEstado, String descripcionEstado) {
-        this.idESTADO = idESTADO;
-        this.nombreEstado = nombreEstado;
-        this.descripcionEstado = descripcionEstado;
+    public Estado(Integer idEstado, String nombreest, String descest) {
+        this.idEstado = idEstado;
+        this.nombreest = nombreest;
+        this.descest = descest;
     }
 
-    public Integer getIdESTADO() {
-        return idESTADO;
+    public Integer getIdEstado() {
+        return idEstado;
     }
 
-    public void setIdESTADO(Integer idESTADO) {
-        this.idESTADO = idESTADO;
+    public void setIdEstado(Integer idEstado) {
+        this.idEstado = idEstado;
     }
 
-    public String getNombreEstado() {
-        return nombreEstado;
+    public String getNombreest() {
+        return nombreest;
     }
 
-    public void setNombreEstado(String nombreEstado) {
-        this.nombreEstado = nombreEstado;
+    public void setNombreest(String nombreest) {
+        this.nombreest = nombreest;
     }
 
-    public String getDescripcionEstado() {
-        return descripcionEstado;
+    public String getDescest() {
+        return descest;
     }
 
-    public void setDescripcionEstado(String descripcionEstado) {
-        this.descripcionEstado = descripcionEstado;
+    public void setDescest(String descest) {
+        this.descest = descest;
     }
 
     @XmlTransient
@@ -99,7 +105,7 @@ public class Estado implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idESTADO != null ? idESTADO.hashCode() : 0);
+        hash += (idEstado != null ? idEstado.hashCode() : 0);
         return hash;
     }
 
@@ -110,15 +116,12 @@ public class Estado implements Serializable {
             return false;
         }
         Estado other = (Estado) object;
-        if ((this.idESTADO == null && other.idESTADO != null) || (this.idESTADO != null && !this.idESTADO.equals(other.idESTADO))) {
-            return false;
-        }
-        return true;
+        return !((this.idEstado == null && other.idEstado != null) || (this.idEstado != null && !this.idEstado.equals(other.idEstado)));
     }
 
     @Override
     public String toString() {
-        return "entidades.Estado[ idESTADO=" + idESTADO + " ]";
+        return "entidades.Estado[ idEstado=" + idEstado + " ]";
     }
     
 }
