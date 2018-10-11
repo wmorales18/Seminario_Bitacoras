@@ -14,8 +14,9 @@
         </h:head>
 
         <h:body>
-
+            <p:growl id="growl"  sticky="true" showDetail="true"></p:growl>
             <p:layout fullPage="true">
+<<<<<<< HEAD
 
                 <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
                     Header
@@ -42,9 +43,27 @@
                     Welcome to PrimeFaces
                 </p:layoutUnit>
 
+=======
+                <p:layoutUnit position="south" size="100" closable="true" collapsible="true" style="background-color: brown;">
+                    SISTEMA DE BITACORAS    V 1.0
+                </p:layoutUnit>
+          <p:layoutUnit position="center" style="background-color: brown;">
+                    <h:form class="table">
+                        <p:panelGrid columns="2" style="position: absolute; top: 250px; left: 500px;">
+                            <f:facet name="header">Login</f:facet>
+                            <h:outputText value=""></h:outputText>
+                            <p:inputText value="#{Usuario.usuario}"></p:inputText>
+                            <h:outputText value=""></h:outputText>
+                            <p:password value="#{Usuario.password}"></p:password>
+                            <f:facet name="footer">
+                                <p:commandButton value="Login" action="#{Usuario.loginControl()}"></p:commandButton>
+                            </f:facet>
+                            </p:panelGrid>
+                    </h:form>
+                </p:layoutUnit>
+>>>>>>> 4afa06f6550ed78d1abdb2b280f56e094efbb6eb
             </p:layout>
-
-        </h:body>
+     </h:body>
 
     </f:view>
 </html>
