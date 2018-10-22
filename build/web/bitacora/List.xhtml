@@ -15,7 +15,7 @@
 
         <ui:define name="body">
             <h:form id="BitacoraListForm">
-                <p:panel header="#{bundle.ListBitacoraTitle}">
+                <p:panel header="#{bundle.ListBitacoraTitle}" styleClass="ui-panel-titlebar ui-widget-header ui-helper-clearfix ui-corner-all">
                     <p:dataTable id="datalist" value="#{bitacoraController.items}" var="item"
                                  selectionMode="single" selection="#{bitacoraController.selected}"
                                  paginator="true"

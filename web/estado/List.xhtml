@@ -15,7 +15,7 @@
 
         <ui:define name="body">
             <h:form id="EstadoListForm">
-                <p:panel header="#{bundle.ListEstadoTitle}">
+                <p:panel header="#{bundle.ListEstadoTitle}" styleClass="ui-panel-titlebar ui-widget-header ui-helper-clearfix ui-corner-all">
                     <p:dataTable id="datalist" value="#{estadoController.items}" var="item"
                                  selectionMode="single" selection="#{estadoController.selected}"
                                  paginator="true"

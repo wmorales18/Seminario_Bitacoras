@@ -15,7 +15,7 @@
 
         <ui:define name="body">
             <h:form id="ProyectoListForm">
-                <p:panel header="#{bundle.ListProyectoTitle}">
+                <p:panel header="#{bundle.ListProyectoTitle}" styleClass="ui-panel-titlebar ui-widget-header ui-helper-clearfix ui-corner-all">
                     <p:dataTable id="datalist" value="#{proyectoController.items}" var="item"
                                  selectionMode="single" selection="#{proyectoController.selected}"
                                  paginator="true"
