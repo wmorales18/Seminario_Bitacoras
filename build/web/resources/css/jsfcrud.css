@@ -1,0 +1,38 @@
+.ui-widget {
+    font-size: 12px !important;
+    align-content: flex-end;
+}
+.ui-layout-north {
+    z-index: 20 !important;
+    overflow: visible !important;;
+
+    align-content: flex-end;
+}
+.ui-layout-north .ui-layout-unit-content {
+    overflow: visible !important;
+ align-content: flex-end;
+   text-transform: uppercase;
+    
+}
+.ui-widget-header {
+  text-align: center;
+   text-transform: uppercase;
+   background-color: #000000;
+  color: #1c1b1b;
+  background:transparent;
+  align-content: flex-end;
+	
+        
+}
+.ui-button {
+    margin-top: 10px !important;
+    align-content: flex-end;
+}
+
+.current {
+
+}
+
+.smoothscroll {
+
+}
