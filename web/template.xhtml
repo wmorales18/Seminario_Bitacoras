@@ -36,7 +36,7 @@ body {
          </p:layoutUnit>
 
                 <p:layoutUnit position="south" size="100" closable="true" collapsible="true" style="background: #776868">
-                    <h2><center>SISTEMA DE BITACORAS    V 2.0</center></h2>
+                    <h2><center>SISTEMA DE BITACORAS    V 2.0.1</center></h2>
                 </p:layoutUnit>
 
                 <p:layoutUnit position="west" size="175"  collapsible="true" style="background: #776868">
@@ -50,13 +50,14 @@ body {
                 <h:form id="menuForm">
                     <p:menubar   autoDisplay="true" style="background: #d1c4c4;" >
                         
-                        <p:menuitem value="#{bundle.Home}" outcome="/index.html" icon="ui-icon-home"/>
+                        
                         <p:submenu label="#{bundle.Maintenance}">
-                            <p:menuitem value="Bitacora" outcome="/bitacora/List.xhtml" />
-                            <p:menuitem value="Estado" outcome="/estado/List.xhtml" />
-                            <p:menuitem value="Proyecto" outcome="/proyecto/List.xhtml" />
-                            <p:menuitem value="Rol" outcome="/rol/List.xhtml" />
-                            <p:menuitem value="Usuario" outcome="/usuario/List.xhtml" />
+                            <p:menuitem value="#{bundle.Home}" outcome="/index.html" icon="ui-icon-home"/>
+                            <p:menuitem value="Bitacora" outcome="/bitacora/List.xhtml" icon="ui-icon-check"/>
+                            <p:menuitem value="Estado" outcome="/estado/List.xhtml" icon="ui-icon-check"/>
+                            <p:menuitem value="Proyecto" outcome="/proyecto/List.xhtml" icon="ui-icon-check"/>
+                            <p:menuitem value="Rol" outcome="/rol/List.xhtml" icon="ui-icon-check"/>
+                            <p:menuitem value="Usuario" outcome="/usuario/List.xhtml" icon="ui-icon-check"/>
                         </p:submenu>
                     </p:menubar>
                     
